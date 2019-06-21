@@ -13,14 +13,7 @@ app = Api(app = flask_app,
 		  title = "Iris Plant identifier", 
 		  description = "Predict the type of iris plant")
 #cors = CORS(app, resources={r"/*": {"origins": "*"}})
-
-#@app.route("/")
-#def my_index():
-#	return 'hello_world'
-
-
 name_space = app.namespace('prediction', description='Prediction APIs')
-#main = app.namespace('/', description='get APIs')
 
 
 model = app.model('Prediction params', 
@@ -99,13 +92,9 @@ with open(pkl_filename, 'rb') as file:
 #mclassifier = joblib.load('mymodel.joblib')
 print (mclassifier)
 @name_space.route("/")
-
-
-
 #@cross_origin()
 class MainClass(Resource):
-	def get(self):
-		return 'helo'
+
 	def options(self):
 		response = make_response()
 		print(response)
@@ -143,3 +132,17 @@ class MainClass(Resource):
 				"status": "Could not make prediction",
 				"error": str(error)
 			})
+
+
+
+#from flask import Flask, render_template
+
+#app = Flask("__main__")
+
+#@app.route("/")
+#def my_index():
+	#return 'helo'
+#	return render_template("index.html", token="hello")
+
+#if __name__=="__main__":
+#	app.run(debug=True)
